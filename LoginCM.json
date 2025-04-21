@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "XSRF-TOKEN",
-      "value": "5b584e4c-613b-48e2-9937-f55a01a56513",
+      "value": "f3117133-7c38-40ab-8bce-324d71c48c06",
       "domain": "kms-qa-01.lighthouse-cloud.com",
       "path": "/kms",
       "expires": -1,
@@ -12,7 +12,7 @@
     },
     {
       "name": "JSESSIONID",
-      "value": "B01E954EE01970A64AE104C23F9DB9E8",
+      "value": "C0AB3378625C91D622D63A3D02B55330",
       "domain": "kms-qa-01.lighthouse-cloud.com",
       "path": "/kms",
       "expires": -1,
@@ -22,7 +22,7 @@
     },
     {
       "name": "SESSION",
-      "value": "YzdlMTk5NTYtNGFmMS00NDk2LThhZjMtZGMxMDZkN2RiOTNi",
+      "value": "YzM1NDU4ODctZjUwNS00ZTZhLWE5NDItNzg4MmEyOWY3ODA0",
       "domain": "kms-qa-01.lighthouse-cloud.com",
       "path": "/kms",
       "expires": -1,

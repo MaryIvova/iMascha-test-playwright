@@ -17,7 +17,6 @@ async function GlobalSetup() {
   await password.click();
   await password.fill('Lighthouse@cm123');
   await loginButton.click();
-  // const LayOutDropDown = 'select#layout';
   const LayOutLoginButton = page.locator('//*[@id="kms-login-to-layout-button"]');
   await page.getByRole('button', { name: 'Manager' }).click();
   await page.getByRole('listbox').getByRole('option', { name: 'Content Manager' }).click();
@@ -28,7 +27,6 @@ async function GlobalSetup() {
   );
 
   await page.context().storageState({ path: './LoginCM.json' });
-  await browser.close();
 }
 
 export default GlobalSetup;
