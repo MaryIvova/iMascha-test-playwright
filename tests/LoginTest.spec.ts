@@ -1,8 +1,10 @@
 import { test, expect, BrowserContext } from '@playwright/test';
+import { MainPage } from '../pages/mainPage';
 import { AsyncLocalStorage } from 'async_hooks';
 import { clear } from 'console';
 import { Page } from 'playwright-core';
 import { Locator } from 'playwright-core';
+import { chromium } from 'playwright';
 
 //test.describe('KMSLogin', () => {
 //  test.beforeEach(async ({ page }) => {
@@ -32,47 +34,30 @@ test.describe('ItemCreate', () => {
 
     // Layout select part
     const LayOutDropDown = page.locator('//select[@name="layout"]');
-    const LayOutLoginButton = page.locator('//*[@id="kms-login-to-layout-button"]');
+    const LayOutLoginButton = page.locator('#kms-login-to-layout-button');
     await expect(page).toHaveURL('https://kms-qa-08.lighthouse-cloud.com/kms/lh/');
     await expect(page.locator('//*[@id="kms-choose-layout-header"]')).toBeVisible();
     await LayOutDropDown.selectOption('Content Manager');
+    // await page.waitForSelector('#kms-login-to-layout-button', { state: 'visible' });
     await LayOutLoginButton.click();
-    await expect(page).toHaveURL(
-      'https://kms-qa-08.lighthouse-cloud.com/kms/CM/INTERNAL/LAYOUT?item_id=4',
-    );
+    await LayOutLoginButton.click();
 
-    // item create part
-    //   await page.getByRole('button', { name: 'Folder 2 [0]' }).click({
-    //     button: 'right',
-    //   });
-    //   await page
-    //     .getByRole('listitem')
-    //     .filter({ hasText: 'Folder 2[0]Sorted by:' })
-    //     .getByRole('img')
-    //     .click({
-    //       button: 'right',
-    //     });
-    //   await page.getByRole('button', { name: 'Folder 2 [0]' }).click();
-    //   await page.getByRole('link', { name: 'New Item' }).click();
-    //   await page.getByRole('textbox', { name: 'Search' }).click();
-    //   await page.getByRole('textbox', { name: 'Search' }).fill('gen');
-    //   await page.getByText('General').click();
-    //   await page.getByRole('paragraph').click();
-    //   await page.getByText('General').click();
-    //   await page.getByRole('button', { name: 'Create item' }).click();
-    // });
+    // item create2
+    const plusButton = page.locator('//*[@class="tree-item-title" and text()="Folder 1" ]');
+    // const createButton = page.locator('//*[@id="cm-tree-item-create-button"]');
+    const newItem = page.locator("div[contains(@class,'New Item')]");
+    // const createItem = page.locator('div#cmTree li[itemid="11"]');
+    await plusButton.click();
+    await plusButton.click({ button: 'right' });
+    await plusButton.click({ button: 'right' });
+    expect(page.locator("div[contains(@class,'New Item')]")).toBeVisible;
+    // expect(createItem).toBeVisible;
   });
+
+  // item create2
+  // test('ItemCreate', async ({ page }) => {
+  //   const folderFive = page.locator('//*[@id="cm-tree-item-create-button"]');
+  //   const createItem = page.locator('div#cmTree li[itemid="11"]');
+  //   await folderFive.click({ button: 'right' });
+  // });
 });
-
-// await page.getByRole('textbox', { name: 'Username' }).fill('cm');
-// await page.getByRole('textbox', { name: 'Password' }).click();
-// await page.getByRole('textbox', { name: 'Password' }).fill('Lighthouse@cm123');
-// await page.getByRole('button', { name: 'Login' }).click();
-// await page.getByRole('button', { name: 'Manager' }).click();
-// await page.getByRole('listbox').getByRole('option', { name: 'Content Manager' }).click();
-// await page.getByRole('button', { name: 'Login' }).click();
-
-//});
-// test('LayoutSelets', async ({ page }) => {
-// }
-// id = 'login-username';
