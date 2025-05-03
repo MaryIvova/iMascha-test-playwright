@@ -40,24 +40,17 @@ test.describe('ItemCreate', () => {
     await LayOutDropDown.selectOption('Content Manager');
     // await page.waitForSelector('#kms-login-to-layout-button', { state: 'visible' });
     await LayOutLoginButton.click();
-    await LayOutLoginButton.click();
+    // await LayOutLoginButton.click();
 
     // item create2
-    const plusButton = page.locator('//*[@class="tree-item-title" and text()="Folder 1" ]');
-    // const createButton = page.locator('//*[@id="cm-tree-item-create-button"]');
+    const NewItem = page.locator('//*[@class="tree-item-title" and text()="Folder 1" ]');
     const newItem = page.locator("div[contains(@class,'New Item')]");
-    // const createItem = page.locator('div#cmTree li[itemid="11"]');
-    await plusButton.click();
-    await plusButton.click({ button: 'right' });
-    await plusButton.click({ button: 'right' });
+    const buttonCreate = page.locator('#cmTreeMenu_create');
+    const cmTreeContextMenu = page.locator('#id="cmTreeContextMenu1"');
+    await NewItem.hover();
+    await NewItem.click({ button: 'right' });
+    await NewItem.click({ button: 'right' });
     expect(page.locator("div[contains(@class,'New Item')]")).toBeVisible;
-    // expect(createItem).toBeVisible;
+    await buttonCreate.click();
   });
-
-  // item create2
-  // test('ItemCreate', async ({ page }) => {
-  //   const folderFive = page.locator('//*[@id="cm-tree-item-create-button"]');
-  //   const createItem = page.locator('div#cmTree li[itemid="11"]');
-  //   await folderFive.click({ button: 'right' });
-  // });
 });
