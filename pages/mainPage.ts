@@ -5,7 +5,7 @@ export class MainPage {
   private readonly createItem: Locator;
   constructor(page: Page) {
     this.page = page;
-    this.folderFive = page.getByTitle('Folder 5 Online/11');
+    this.folderFive = page.getByTitle('//*[@class="tree-item-title" and text()="Folder 1" ]');
     this.createItem = page.locator('#cmTreeMenu_create');
   }
   async clickFolderFiveButton() {
