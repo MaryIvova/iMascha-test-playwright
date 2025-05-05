@@ -11,12 +11,6 @@ export class ItemView {
     this.page = page;
     this.frameLocator = page.locator('#itemscope').contentFrame();
     this.itemName = this.frameLocator.locator('#itemTitleForEdit');
-    this.title = this.frameLocator
-      .locator('iframe[name="itemscope"]')
-      .contentFrame()
-      .locator('div')
-      .filter({ hasText: /^Offline$/ })
-      .first();
     this.itemStatus = this.frameLocator.locator('.iw-dropdown-value-container');
     this.onlineStatus = this.frameLocator
       .getByRole('option', { name: 'Online' })
@@ -26,8 +20,7 @@ export class ItemView {
   }
   async changeItemTitle(itemName: string) {
     await this.itemName.click();
-    await this.title.click();
-    await this.title.fill(itemName);
+    await this.itemName.type(itemName);
   }
   async changeStatus(option: string) {
     await this.itemStatus.click();

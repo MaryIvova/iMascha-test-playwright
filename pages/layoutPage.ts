@@ -19,6 +19,7 @@ export class LayOutPage {
     await expect(this.layOutField).toBeVisible();
     // this.contentManget.click;
     await this.layOutDropDown.selectOption('Content Manager');
+    expect(this.layOutLoginButton).toBeVisible();
     await this.layOutLoginButton.click();
   }
 }

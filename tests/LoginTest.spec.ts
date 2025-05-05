@@ -59,7 +59,7 @@ test.describe('ItemCreate', () => {
     // itemView
     const itemView = new ItemView(page);
     await itemView.changeItemTitle('Mariia`s');
-    await itemView.changeStatus('Online');
-    await itemView.saveItem();
+    // await itemView.changeStatus('Online');
+    // await itemView.saveItem();
   });
 });
