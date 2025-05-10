@@ -9,10 +9,6 @@ import { ItemView } from '../pages/itemView';
 import { LogInPage } from '../pages/loginPage';
 import { LayOutPage } from '../pages/layoutPage';
 
-//test.describe('KMSLogin', () => {
-//  test.beforeEach(async ({ page }) => {
-
-//  });
 test.describe('ItemCreate', () => {
   test.skip('LogInKMS2', async ({ page }) => {
     await page.goto('https://kms-qa-08.lighthouse-cloud.com/kms/lh/login');
@@ -34,7 +30,7 @@ test.describe('ItemCreate', () => {
     await layoutPage.layoutSelect('Content Manager');
 
     // item create2
-    const newItem = page.locator('//*[@class="tree-item-title" and text()="Folder 1" ]');
+    const newItem = page.locator('//*[@class="tree-item-title" and text()="Folder 4" ]');
     const buttonCreate = page.locator('#cmTreeMenu_create');
     const popUpNewItem = page.locator(
       '//*[class="item-create-dialog__title" and text()="New Item"]',
@@ -58,8 +54,10 @@ test.describe('ItemCreate', () => {
 
     // itemView
     const itemView = new ItemView(page);
-    await itemView.changeItemTitle('Mariia`s');
+    await itemView.changeItemTitle(itemView.articleTitle);
     await itemView.changeStatus('Online', page);
     await itemView.saveItem();
+    //check color
+    await itemView.checkItemTitleIsOnline();
   });
 });
