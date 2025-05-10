@@ -16,19 +16,24 @@ export class ItemView {
       .getByRole('option', { name: 'Online' })
       .locator('span')
       .nth(1);
-    this.itemSave = this.frameLocator.locator('#kms-action-bar-button-Save');
+    this.itemSave = page.locator('.action-bar#kms-action-bar-button-Save button');
   }
   async changeItemTitle(itemName: string) {
     await this.itemName.click();
     await this.itemName.type(itemName);
   }
-  async changeStatus(option: string) {
-    await this.itemStatus.click();
-    await this.itemStatus.click();
+  async changeStatus(option: string, page) {
+    await this.itemStatus.click({
+      button: 'left', // Specifies which button to click (left, right, middle)
+      clickCount: 2, // Number of times to click
+      delay: 2000, // Time to wait between mousedown and mouseup in milliseconds}
+    });
     expect(this.onlineStatus).toBeVisible;
     await this.onlineStatus.click();
   }
   async saveItem() {
-    await this.itemSave.click();
+    await this.page.getByRole('listitem', { name: 'Save', exact: true }).getByRole('img').click();
+    // await this.itemSave.click();
+    // await this.page.pause();
   }
 }
