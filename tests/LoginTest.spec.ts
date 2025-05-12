@@ -1,4 +1,4 @@
-import { test, expect, BrowserContext } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { MainPage } from '../pages/mainPage';
 import { AsyncLocalStorage } from 'async_hooks';
 import { clear } from 'console';
@@ -8,6 +8,7 @@ import { chromium } from 'playwright';
 import { ItemView } from '../pages/itemView';
 import { LogInPage } from '../pages/loginPage';
 import { LayOutPage } from '../pages/layoutPage';
+import { faker } from '@faker-js/faker/locale/en';
 
 test.describe('ItemCreate', () => {
   test.skip('LogInKMS2', async ({ page }) => {
@@ -53,8 +54,9 @@ test.describe('ItemCreate', () => {
     expect(itemTitle).toBeVisible;
 
     // itemView
+    const generatorName = faker.lorem.word();
     const itemView = new ItemView(page);
-    await itemView.changeItemTitle(itemView.articleTitle);
+    await itemView.changeItemTitle(generatorName);
     await itemView.changeStatus('Online', page);
     await itemView.saveItem();
     //check color

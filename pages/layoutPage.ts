@@ -23,4 +23,14 @@ export class LayOutPage {
     await this.layOutLoginButton.waitFor({ state: 'visible' });
     await this.layOutLoginButton.click();
   }
+
+  async layoutSelectCSR(option: string) {
+    expect(this.haeder).toBeVisible();
+    await expect(this.layOutField).toBeVisible();
+    // this.contentManget.click;
+    await this.layOutDropDown.selectOption('CSR');
+    expect(this.layOutLoginButton).toBeVisible();
+    await this.layOutLoginButton.waitFor({ state: 'visible' });
+    await this.layOutLoginButton.click();
+  }
 }

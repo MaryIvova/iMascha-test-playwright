@@ -1,5 +1,6 @@
 import { expect, FrameLocator, type Locator, type Page } from '@playwright/test';
 import { RandomDataGenerator } from '../testData/RandomNameGenerator.ts';
+import { faker } from '@faker-js/faker/locale/en';
 export class ItemView {
   private readonly page: Page;
   private readonly itemName: Locator;
@@ -14,7 +15,8 @@ export class ItemView {
     this.page = page;
     this.frameLocator = page.locator('#itemscope').contentFrame();
     this.itemName = this.frameLocator.locator('#itemTitleForEdit');
-    this.articleTitle = RandomDataGenerator.generateRandomName(12);
+    // this.articleTitle = RandomDataGenerator.generateRandomName(12);
+    this.articleTitle = faker.lorem.word();
     this.itemStatus = this.frameLocator.locator('.iw-dropdown-value-container');
     this.onlineStatus = this.frameLocator
       .getByRole('option', { name: 'Online' })
@@ -26,7 +28,7 @@ export class ItemView {
   }
   async changeItemTitle(itemName: string) {
     await this.itemName.click();
-    await this.itemName.type(this.articleTitle);
+    await this.itemName.type(itemName);
   }
   async changeStatus(option: string, page) {
     await this.itemStatus.click({
